@@ -1,0 +1,26 @@
+{% assign avg_rating = block.settings.product.metafields.demo.avg_rating.value | round %}
+<span style="color:{{ block.settings.colour }}">
+  {% render 'stars', rating: avg_rating %}
+</span>
+{% if avg_rating >= 4 %}
+  <br>
+  <img src="{{ "thumbs-up.png" | asset_img_url: '15x' }}" height="15" width="15" loading="lazy">
+  {{ 'ratings.home.recommendationText' | t }}
+{% endif %}
+<h2 class="rating-title">{{ block.settings.title }}</h2>
+{% if block.settings.description != blank %}
+  <p class="rating-description">{{ block.settings.description }}</p>
+{% endif %}
+{% schema %}
+{
+  "name": "Star Rating",
+  "target": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "product", "autofill": true },
+    { "type": "color", "id": "colour", "label": "Star Colour", "default": "#ff0000" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Title" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Description" }
+  ]
+}
+{% endschema %}
+

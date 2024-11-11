@@ -1,0 +1,17 @@
+{{ 'ratings.stars.label' | t }}:
+<div class="rating-title">
+ {%  %}- if title -%}
+    <h3>{{ title }}</h3>
+ {%  %}- endif -%}
+ {%  %}- if description -%}
+    <p>{{ description }}</p>
+ {%  %}- endif -%}
+</div>
+{%- for i in (1..rating) -%}
+  ★
+{%- endfor -%}
+{%- assign blank_stars = 5 | minus: rating -%}
+{%- for i in (1..blank_stars) -%}
+  ☆
+{%- endfor -%}
+
